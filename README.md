@@ -38,4 +38,4 @@ J'ai préféré faire des tests fonctionnels plutôt qu'unitaires, pour les diff
 
 ## Documentation
 
-La documentation de l'API est disponible, au format OpenAPI (Swagger), sur le host sur lequel vous avez mis le projet, à l'adresse : [/api/documentation](/api/documentation)
+La documentation de l'API est disponible, au format OpenAPI (Swagger), sur le host sur lequel vous avez mis le projet, à l'adresse : `/api/documentation`
