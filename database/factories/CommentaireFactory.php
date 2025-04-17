@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Administrateur;
+use App\Models\Profil;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +21,9 @@ class CommentaireFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'contenu' => $this->faker->sentence(),
+            'profil_id' => Profil::factory(),
+            'administrateur_id' => Administrateur::factory(),
         ];
     }
 }

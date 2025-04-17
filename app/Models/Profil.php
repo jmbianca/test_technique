@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Enums\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @mixin IdeHelperProfil
@@ -29,7 +30,7 @@ class Profil extends Model
         'status' => Status::class,
     ];
 
-    public function commentaires()
+    public function commentaires(): HasMany
     {
         return $this->hasMany(Commentaire::class);
     }

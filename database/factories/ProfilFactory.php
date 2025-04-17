@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Administrateur;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,11 @@ class ProfilFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nom' => $this->faker->lastName,
+            'prenom' => $this->faker->firstName,
+            'status' => null,  //sera passé en param au moment de la creation
+            'administrateur_id' => null, //sera passé en param au moment de la creation
+            'image_url' => null,
         ];
     }
 }

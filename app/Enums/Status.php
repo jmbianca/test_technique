@@ -7,7 +7,7 @@ namespace App\Enums;
 enum Status: string
 {
     case ACTIF = 'actif';
-    case ENATTENTE = 'en_attente';
+    case ENATTENTE = 'en attente';
     case INACTIF = 'inactif';
 
     public static function values(): array
