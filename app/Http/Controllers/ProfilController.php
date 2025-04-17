@@ -23,7 +23,7 @@ class ProfilController extends Controller
         }
 
         // Sinon, on cache le champ `status` pour chaque profil
-        $profils = $profils->map(function ($profil) {
+        $profils = $profils->map(function (Profil $profil) {
             return collect($profil)->except('status');
         });
 
