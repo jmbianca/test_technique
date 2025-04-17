@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProfilEditRequest extends FormRequest
 {
@@ -26,7 +30,6 @@ class ProfilEditRequest extends FormRequest
             'prenom' => 'required|string|max:255',
             'image' => 'nullable|image|max:255', // optionnel, mais doit être une image
             'status' => 'required|in:actif,en attente,inactif',
-            'id' => 'required|exists:profils,id'
         ];
     }
 
@@ -37,8 +40,17 @@ class ProfilEditRequest extends FormRequest
             'prenom.required' => 'Le prénom est requis.',
             'status.required' => 'Le statut est requis.',
             'status.in' => 'Le statut doit être l\'un des suivants : actif, attente, inactif.',
-            'id.required' => 'Le profil est requis.',
-            'id.exists' => 'Le profil spécifié n\'existe pas.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator): HttpResponseException
+    {
+        \Log::debug('Validation failed:', $validator->errors()->toArray());
+
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'message' => 'Validation errors',
+            'errors' => $validator->errors(),
+        ], 422));
     }
 }

@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProfilRequest extends FormRequest
 {
@@ -37,5 +41,16 @@ class ProfilRequest extends FormRequest
             'status.required' => 'Le statut est requis.',
             'status.in' => 'Le statut doit être l\'un des suivants : actif, attente, inactif.',
         ];
+    }
+
+    protected function failedValidation(Validator $validator): HttpResponseException
+    {
+        \Log::debug('Validation failed:', $validator->errors()->toArray());
+
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'message' => 'Validation errors',
+            'errors' => $validator->errors(),
+        ], 422));
     }
 }

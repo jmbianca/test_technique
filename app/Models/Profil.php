@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Enums\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin IdeHelperProfil
+ */
 class Profil extends Model
 {
     /** @use HasFactory<\Database\Factories\ProfilFactory> */
@@ -23,4 +28,9 @@ class Profil extends Model
     protected $casts = [
         'status' => Status::class,
     ];
+
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
 }

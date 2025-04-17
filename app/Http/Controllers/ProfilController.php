@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Enums\Status;
@@ -8,6 +10,7 @@ use App\Http\Requests\ProfilEditRequest;
 use App\Http\Requests\ProfilRequest;
 use App\Models\Profil;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
 {
@@ -71,14 +74,21 @@ class ProfilController extends Controller
         return response()->json($profil, 200);
     }
 
-    public function delete(ProfilDeleteRequest $request, int $id): JsonResponse
+    public function delete(int $id): JsonResponse
     {
-        $profilId = $request->input('profil_id');
-        $profil = Profil::find($profilId);
+        $profil = Profil::find($id);
 
         if (!$profil) {
             return response()->json(['error' => 'Profil non trouvé'], 404);
         }
+
+        //effacer l'image eventuellement liée au profil
+        if ($profil->image_url && Storage::disk('public')->exists($profil->image_url)) {
+            Storage::disk('public')->delete($profil->image_url);
+        }
+
+        //effacer les commentaires liées au profil
+        $profil->commentaires()->delete();
 
         $profil->delete();
 
