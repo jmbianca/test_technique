@@ -34,4 +34,8 @@ Pour chaque appel API qui necessite une authentification, il faut passer comme H
 
 ## Note sur les tests
 
-J'ai préféré faire des tests fonctionnels plutot qu'unitaires, pour les différents endpoints, afin de couvrir l'ensemble de la logique de l'application.
+J'ai préféré faire des tests fonctionnels plutôt qu'unitaires, pour les différents endpoints, afin de couvrir l'ensemble de la logique de l'application.
+
+## Documentation
+
+La documentation de l'API est disponible ici, au format OpenAPI (Swagger) : [/api/documentation](/api/documentation)
