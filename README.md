@@ -16,12 +16,6 @@ enfin : `php artisan storage:link`
 
 Depuis la racine du projet, executer : `touch database/test.sqlite` pour créer la base de test.
 
-Creer un fichier `.env.testing` avec les infos suivantes :
-```
-DB_CONNECTION=sqlite
-DB_DATABASE=database/test.sqlite
-```
-
 Puis executer : `php artisan migrate --env=testing`
 
 ### Creation de l'administrateur
