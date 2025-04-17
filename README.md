@@ -2,6 +2,16 @@
 
 ## Installation
 
+Projet utilisant Laravel 11, PHP 8.3 et SqlLite.
+
+Depuis la racine du projet, executer : `composer install`
+
+Puis : `php artisan migrate`
+
+et : `php artisan key:generate`
+
+enfin : `php artisan storage:link`
+
 ### Creation de la base de test
 
 Depuis la racine du projet, executer : `touch database/test.sqlite` pour créer la base de test.
@@ -16,15 +26,11 @@ Puis executer : `php artisan migrate --env=testing`
 
 ### Creation de l'administrateur
 
-Executer : `php artisan tinker`
-
-Puis : `\App\Models\Administrateur::factory()->create();`
-
-Puis : `exit`
+Executer : `php artisan db:seed`
 
 ## Utilisation
 
-L'utilisateur créé a comme information : 
+L'administrateur créé a comme information : 
 ```
 Login : test
 Mot de passe : hello%cse
