@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Administrateur>
@@ -17,7 +18,9 @@ class AdministrateurFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nom' => "test",
+            'login' => "test",
+            'mot_de_passe' => Hash::make('hello%cse'),
         ];
     }
 }

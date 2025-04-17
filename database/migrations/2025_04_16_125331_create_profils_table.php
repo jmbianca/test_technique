@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->foreignId('administrateur_id')->constrained();
-            $table->string('image_url');
+            $table->string('image_url')->nullable();
             $table->enum('status', Status::values())->default('en_attente');
             $table->timestamps();
         });
